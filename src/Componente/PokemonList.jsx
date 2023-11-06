@@ -2,11 +2,10 @@ import {PokemonCard} from "./PokemonCard"
 import "./PokemonList.css"
 
 export const PokemonList = ({ pokemons }) =>{
-    console.log(pokemons)
     return(
 <div className="PokemonList">
     {pokemons?.map((pokemon ) => {
-        return <PokemonCard name={pokemon.name}  key={pokemon.name}/>
+        return <PokemonCard name={pokemon.name} imagen={pokemon.sprites.front_default}  key={pokemon.name}/>
     })}
 </div>
     )
