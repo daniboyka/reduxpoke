@@ -4,8 +4,8 @@ import "./App.css";
 import { Col } from "antd";
 import { Searcher } from "./Componente/Searcher";
 import { PokemonList } from "./Componente/PokemonList";
-import { getPokemon, getPokemonDetails } from "./api";
-import { setPokemons } from "./actions/index";
+import { getPokemon } from "./api";
+import { getPokemonsWithDetail } from "./actions/index";
 
 function App() {
   const pokemons = useSelector((state) => state.pokemons);
@@ -14,11 +14,8 @@ function App() {
 
   useEffect(() => {
     const fetchPokemons = async () => {
-      const pokemonsRes = await getPokemon();     
-      const pokemonsDetailed = await Promise.all(
-        pokemonsRes.map((urlDetai) => getPokemonDetails(urlDetai))
-      );
-      dispatch(setPokemons(pokemonsDetailed));
+      const pokemonsRes = await getPokemon();
+      dispatch(getPokemonsWithDetail(pokemonsRes));
     };
     fetchPokemons();
   }, []);
