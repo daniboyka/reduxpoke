@@ -2,10 +2,20 @@ import {PokemonCard} from "./PokemonCard"
 import "./PokemonList.css"
 
 export const PokemonList = ({ pokemons }) =>{
+
+// const obtenerNombresDeHabilidades = (habilidades) => {
+//     return (
+//       <ul>
+//         {habilidades.map((habilidad) => (
+//           <li key={habilidad.ability.name}>{habilidad.ability.name}</li>
+//         ))}
+//       </ul>
+//     );
+//   };
     return(
 <div className="PokemonList">
     {pokemons?.map((pokemon ) => {
-        return <PokemonCard name={pokemon.name} imagen={pokemon.sprites.front_default}  key={pokemon.name}/>
+        return <PokemonCard name={pokemon.name} imagen={pokemon.sprites.front_default}  types={pokemon.types} abilities={pokemon.abilities}  key={pokemon.name}/>
     })}
 </div>
     )
