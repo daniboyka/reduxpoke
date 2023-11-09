@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { fromJS } from "immutable";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { Col } from "antd";
@@ -8,7 +9,8 @@ import { getPokemon } from "./api";
 import { getPokemonsWithDetail } from "./actions/index";
 
 function App() {
-  const pokemons = useSelector((state) => state.pokemons);
+  // con .toJS() transformamos ese tipo de dato distinto q nos da immutable y lo pasa a JS pa no tener q andar agregando .get() a todo
+  const pokemons = useSelector((state) => state.get('pokemons')).toJS();
 
   const dispatch = useDispatch();
 
