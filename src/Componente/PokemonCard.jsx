@@ -8,11 +8,12 @@ export const PokemonCard = ({
   name,
   id,
   imagen,
-  favorite,
+  favorite,  
   obtenerHabilidades,
   types,
   abilities,
 }) => {
+
   const dispatch = useDispatch();
 
   const manejoDeFavoritos = () =>{

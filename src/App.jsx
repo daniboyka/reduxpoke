@@ -1,23 +1,30 @@
 import { useEffect } from "react";
-import { fromJS } from "immutable";
+import { get } from"immutable";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import { Col } from "antd";
+import { Col, Spin } from "antd";
 import { Searcher } from "./Componente/Searcher";
 import { PokemonList } from "./Componente/PokemonList";
 import { getPokemon } from "./api";
-import { getPokemonsWithDetail } from "./actions/index";
+import { getLogin, getPokemonsWithDetail } from "./actions/index";
 
 function App() {
   // con .toJS() transformamos ese tipo de dato distinto q nos da immutable y lo pasa a JS pa no tener q andar agregando .get() a todo
-  const pokemons = useSelector((state) => state.get('pokemons')).toJS();
+  // const pokemons = useSelector((state) => state.get('pokemons')).toJS();
+  const pokemons = useSelector(state => get(state, 'pokemons')).toJS();
+  // const loading = useSelector(state => get(state, 'loading')).toJS();
+
 
   const dispatch = useDispatch();
+
+  const loading= false
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemon();
+      // dispatch(getLogin(true))
       dispatch(getPokemonsWithDetail(pokemonsRes));
+      dispatch(getLogin(false))
     };
     fetchPokemons();
   }, []);
@@ -33,7 +40,9 @@ function App() {
       <Col span={8} offset={8}>
         <Searcher />
       </Col>
-      <PokemonList pokemons={pokemons} />
+      {loading ? <Col offset={12}>
+      <Spin spinning size="large" />      
+      </Col> : <PokemonList pokemons={pokemons} />}    
     </div>
   );
 }

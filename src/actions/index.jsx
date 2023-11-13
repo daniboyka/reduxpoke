@@ -1,5 +1,6 @@
+import { type } from "@testing-library/user-event/dist/type";
 import { getPokemonDetails } from "../api";
-import { SET_FAVORITO, SET_POKEMONS } from "./types";
+import { SET_FAVORITO, SET_LOGGIN, SET_POKEMONS } from "./types";
 
 export const setPokemons = (payload) => ({
   type: SET_POKEMONS,
@@ -19,3 +20,8 @@ export const getPokemonsWithDetail =
     );
     dispatch(setPokemons(pokemonsDetailed));
   };
+
+  export const getLogin = (payload) => ({
+    type: SET_LOGGIN,
+    payload,
+  })
