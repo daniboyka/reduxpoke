@@ -12,17 +12,17 @@ function App() {
   // con .toJS() transformamos ese tipo de dato distinto q nos da immutable y lo pasa a JS pa no tener q andar agregando .get() a todo
   // const pokemons = useSelector((state) => state.get('pokemons')).toJS();
   const pokemons = useSelector(state => get(state, 'pokemons')).toJS();
-  // const loading = useSelector(state => get(state, 'loading')).toJS();
+  const loading = useSelector(state => get(state, 'loading'));
 
 
   const dispatch = useDispatch();
 
-  const loading= false
+  
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemon();
-      // dispatch(getLogin(true))
+      dispatch(getLogin(true))
       dispatch(getPokemonsWithDetail(pokemonsRes));
       dispatch(getLogin(false))
     };
@@ -39,7 +39,7 @@ function App() {
       </Col>
       <Col span={8} offset={8}>
         <Searcher />
-      </Col>
+      </Col>      
       {loading ? <Col offset={12}>
       <Spin spinning size="large" />      
       </Col> : <PokemonList pokemons={pokemons} />}    

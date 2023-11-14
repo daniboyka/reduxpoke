@@ -17,9 +17,9 @@ export const pokeReducer = (state = inicialState, action) => {
     case SET_FAVORITO:
       // const copiaStadoPokemons = [ ...state.pokemons ]; con IMMUTABLE no es necesario hacer una copia del state. IMMUTABLE se encarga de asegurar esa inmutabilidad
       //IMMUTABLE tiene sus propios metodos, como el findIndex, map, etc...
-      const actualPokemonImdex = get(state,"pokemons").findIndex((pokemon) => {
+      const actualPokemonImdex = get(state, "pokemons").findIndex((pokemon) => {
         return pokemon.get("id") === action.payload.pokemonId;
-      });     
+      });
       if (actualPokemonImdex < 0) {
         return state;
       }
@@ -29,26 +29,22 @@ export const pokeReducer = (state = inicialState, action) => {
       // const estaEnFavorito= state.get("pokemons").get
       // (actualPokemonImdex).get("favorite")
       // HACER ESTO
-      const estaEnFavorito = getIn(state,[
+      const estaEnFavorito = getIn(state, [
         "pokemons",
         actualPokemonImdex,
         "favorite"
       ]);
+
       //--------------------------------------------------------------------------------------------------
       // ESTO LO REEMPLAZO CON
       // [actualPokemonImdex].favorite =
       // !copiaStadoPokemons[actualPokemonImdex].favorite;
       // return { ...state, pokemons: copiaStadoPokemons }
-      return getIn(state, [
-        "pokemons",
-        actualPokemonImdex,
-        "favorite"],
-        !estaEnFavorito
-      );
+      return setIn(state, ["pokemons", actualPokemonImdex, "favorite"],!estaEnFavorito);
 
-      case SET_LOGGIN: 
+    case SET_LOGGIN:
       return setIn(state, ["loading"], fromJS(action.payload));
-      // return {...state, loading: action.payload}
+   
 
     default:
       return state;
