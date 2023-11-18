@@ -5,11 +5,6 @@ const initialState = {
   loading: false,
 };
 
-
-    
- 
-
-
 export const uiSlice = createSlice({
   name: "ui",
   initialState,

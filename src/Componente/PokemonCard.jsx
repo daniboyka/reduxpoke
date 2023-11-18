@@ -20,7 +20,7 @@ export const PokemonCard = ({
     dispatch(setFavorito({ pokemonId: id }))
   }
 
-  return (
+  return (    
     <Card
       title={name}
       cover={<img src={imagen} alt={name} />}

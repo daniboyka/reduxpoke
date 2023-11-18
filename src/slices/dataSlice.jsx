@@ -3,12 +3,13 @@ import { getPokemon, getPokemonDetails } from "../api";
 import { setLogging } from "./uiSlice";
 
 const initialState = {
-  pokemons: [],  
+  pokemons: [],
+  filteredPokemons: [],
 };
 
 export const fetchPokemonsWithDetails = createAsyncThunk(
     "data/fetchPokemonsWithDetails",
-    async (_, {dispatch}) => {        // dispatch de lodde  
+    async (_, {dispatch}) => {         
       dispatch(setLogging(true))      
         const pokemonsRes = await getPokemon();
         const pokemonsDetailed = await Promise.all(
@@ -26,6 +27,12 @@ export const dataSlice = createSlice({
     setPokemons: (state, action) => {
       state.pokemons = action.payload;
     },
+    setFilteredPokemons: (state, action) => {
+      const buscadorDeLetra = action.payload.toLowerCase();
+      state.filteredPokemons = state.pokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(buscadorDeLetra)
+      );     
+    },
     setFavorito: (state, action) => {
       const actualPokemonImdex = state.pokemons.findIndex((pokemon) => {
         return pokemon.id === action.payload.pokemonId;
@@ -38,5 +45,5 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { setFavorito, setPokemons } = dataSlice.actions
+export const { setFavorito, setPokemons, setFilteredPokemons } = dataSlice.actions
 export default dataSlice.reducer
