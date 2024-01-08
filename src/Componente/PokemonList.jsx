@@ -3,17 +3,28 @@ import { shallowEqual, useSelector } from "react-redux";
 import { PokemonCard } from "./PokemonCard";
 import "./PokemonList.css";
 
-/// VASI Q ANDAAAA
 
 export const PokemonList = ({ pokemons, pokemonsFiltrados }) => {
   const filterValue = useSelector((state) => state.data.filterValue, shallowEqual);
-
+  const type = useSelector((state) => state.data.selectedType, shallowEqual);
+  const pokeTypes = useSelector((state) => state.data.PokeType, shallowEqual);
+  
+  
   let pokemonsToRender;
 
+ 
   if (filterValue && filterValue.trim() !== '') {
-    pokemonsToRender = pokemonsFiltrados.length > 0 ? pokemonsFiltrados : [];
+    pokemonsToRender = pokemonsFiltrados.filter(pokemon => 
+      pokemon.name.toLowerCase().includes(filterValue.toLowerCase())
+    );
   } else {
-    pokemonsToRender = pokemons;
+    pokemonsToRender = pokemonsFiltrados.length > 0 ? pokemonsFiltrados : pokemons;
+  }
+
+  if (type !== 'all' && pokeTypes.length > 0) {
+    pokemonsToRender = pokemonsToRender.filter(pokemon => 
+      pokemon.types.some(p => p.type.name === type)
+    );
   }
 
   return (
@@ -31,7 +42,7 @@ export const PokemonList = ({ pokemons, pokemonsFiltrados }) => {
           />
         ))
       ) : (
-        <p>No existe el Pokémon</p>
+        <p>No existen Pokémon que coincidan con los filtros seleccionados</p>
       )}
     </div>
   );

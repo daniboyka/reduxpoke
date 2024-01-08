@@ -1,6 +1,7 @@
 import { Input } from "antd";
 import { useDispatch } from "react-redux";
 import { setFilteredPokemons, setFilterValue } from "../slices/dataSlice";
+import { PokemonTypesSelect } from "./PokemonsTypes";
 
 
 export const Searcher = () => {
@@ -33,6 +34,7 @@ export const Searcher = () => {
 
   return (
     <>
+    <PokemonTypesSelect/>
       <Input.Search
         placeholder="Buscar..."
         onChange={(e) => handleSearch(e.target.value)}

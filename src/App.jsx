@@ -14,8 +14,7 @@ function App() {
   // const pokemons = useSelector((state) => state.get('pokemons')).toJS();
   // SHALLOWEQUAL es como una comparacion extricta que compara si es un objeto === immutable
   const pokemons = useSelector((state) => state.data.pokemons, shallowEqual);
-  const pokemonsFiltrados = useSelector((state) => state.data.filteredPokemons, shallowEqual);
-  
+  const pokemonsFiltrados = useSelector((state) => state.data.filteredPokemons, shallowEqual); 
   //  => getIn(state, ['data', 'pokemons'], shallowEqual)).toJS();
   const loading = useSelector((state) => state.ui.loading);
   //  => Boolean(state.getIn(['ui','loading'])));

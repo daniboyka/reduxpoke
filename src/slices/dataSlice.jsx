@@ -5,7 +5,9 @@ import { setLogging } from "./uiSlice";
 const initialState = {
   pokemons: [],
   filteredPokemons: [],
-  vacio:[],
+  PokeType: [],
+  selectedType: "all",
+  filterValue: "",
 };
 
 //PROBAR HACER UN UseEffect q dispatch(setFilteredPokemons) cuando los pokemones se seteen en el state pokemon
@@ -27,20 +29,37 @@ export const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    setPokemons: (state, action) => {     
+    setPokemons: (state, action) => {
       state.pokemons = action.payload;
     },
     setFilteredPokemons: (state, action) => {
       const filterValue = action.payload;
-  if (!filterValue || (Array.isArray(filterValue) && filterValue.length === 0)) {
-    // Si el valor de filtrado no está definido o es un array vacío, mostrar todos los Pokémon si están disponibles
-    state.filteredPokemons = state.pokemons; // Mostrar todos los Pokémon
-  } else {
-    const buscadorDeLetra = filterValue.toLowerCase();
-    state.filteredPokemons = state.pokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(buscadorDeLetra)
-    );
-  }
+      if (
+        !filterValue ||
+        (Array.isArray(filterValue) && filterValue.length === 0)
+      ) {
+        // Si el valor de filtrado no está definido o es un array vacío, mostrar todos los Pokémon si están disponibles
+        state.filteredPokemons = state.pokemons; // Mostrar todos los Pokémon
+      } else {
+        const buscadorDeLetra = filterValue.toLowerCase();
+        state.filteredPokemons = state.pokemons.filter((pokemon) =>
+          pokemon.name.toLowerCase().includes(buscadorDeLetra)
+        );
+      }
+    },
+
+    setFilteredPokemonsByType: (state, action) => {
+      state.selectedType = action.payload; // Guarda el tipo seleccionado en el estado
+      if (action.payload === "all") {
+        state.PokeType = state.pokemons; // Si se selecciona 'Todos los tipos', muestra todos los pokemones
+      } else {
+        state.PokeType = state.pokemons.filter((pokemon) =>
+          pokemon.types.some((type) => type.type.name === action.payload)
+        ); // Filtra los pokemones por el tipo seleccionado
+      }
+    },
+    setFilterValue: (state, action) => {
+      state.filterValue = action.payload;
     },
     setFavorito: (state, action) => {
       const actualPokemonImdex = state.pokemons.findIndex((pokemon) => {
@@ -51,13 +70,14 @@ export const dataSlice = createSlice({
         state.pokemons[actualPokemonImdex].favorite = !estaEnFavorito;
       }
     },
-    setFilterValue: (state, action) => {
-      state.filterValue = action.payload;
-    },
-
   },
 });
 
-export const { setFavorito, setPokemons, setFilteredPokemons, setFilterValue } =
-  dataSlice.actions;
+export const {
+  setFavorito,
+  setPokemons,
+  setFilteredPokemons,
+  setFilterValue,
+  setFilteredPokemonsByType,
+} = dataSlice.actions;
 export default dataSlice.reducer;
