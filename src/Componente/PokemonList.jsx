@@ -10,15 +10,13 @@ export const PokemonList = ({ pokemons, pokemonsFiltrados }) => {
   const pokeTypes = useSelector((state) => state.data.PokeType, shallowEqual);
   
   
-  let pokemonsToRender;
+  let pokemonsToRender = [...pokemons];
+  console.log(pokemons.length)
 
- 
   if (filterValue && filterValue.trim() !== '') {
     pokemonsToRender = pokemonsFiltrados.filter(pokemon => 
       pokemon.name.toLowerCase().includes(filterValue.toLowerCase())
     );
-  } else {
-    pokemonsToRender = pokemonsFiltrados.length > 0 ? pokemonsFiltrados : pokemons;
   }
 
   if (type !== 'all' && pokeTypes.length > 0) {
