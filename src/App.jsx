@@ -33,7 +33,7 @@ function App() {
           alt="logo"
         />
       </Col>
-      <Col span={8} offset={8}>
+      <Col span={16} offset={3}>
         <Searcher />
       </Col>
       {loading ? (

@@ -11,7 +11,6 @@ export const PokemonList = ({ pokemons, pokemonsFiltrados }) => {
   
   
   let pokemonsToRender = [...pokemons];
-  console.log(pokemons.length)
 
   if (filterValue && filterValue.trim() !== '') {
     pokemonsToRender = pokemonsFiltrados.filter(pokemon => 

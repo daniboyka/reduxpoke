@@ -1,6 +1,7 @@
 // import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilteredPokemonsByType } from "./../slices/dataSlice";
+import { Col, Row } from "antd";
 
 export const PokemonTypesSelect = () => {
   const dispatch = useDispatch();
@@ -37,16 +38,26 @@ export const PokemonTypesSelect = () => {
   };    
 
   return (
-    <div>
-      <label htmlFor="types">Selecciona un tipo de Pokémon:</label>
-      <select id="types" onChange={handleTypeChange}>
-        <option value="all">Todos los tipos</option>
-        {uniqueTypes.map((type, index) => (
-          <option key={index} value={type}>
-            {type}
-          </option>
-        ))}
-      </select>
+    <div className="container-pokemonsTypes">
+      <Row justify="start">
+        <Col span={8} offset={2}>
+          <Row align="middle">
+            <Col flex="100px">
+              <label htmlFor="types">Selecciona un tipo de Pokémon:</label>
+            </Col>
+            <Col flex="auto">
+              <select id="types" onChange={handleTypeChange}>
+                <option value="all">Todos los tipos</option>
+                {uniqueTypes.map((type, index) => (
+                  <option key={index} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 };
