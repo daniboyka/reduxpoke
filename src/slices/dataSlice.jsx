@@ -8,6 +8,7 @@ const initialState = {
   PokeType: [],
   selectedType: "all",
   filterValue: "",
+  orderByName: null, // Puede ser "AZ" o "ZA"
 };
 
 //PROBAR HACER UN UseEffect q dispatch(setFilteredPokemons) cuando los pokemones se seteen en el state pokemon
@@ -47,7 +48,9 @@ export const dataSlice = createSlice({
         );
       }
     },
-
+    orderBy: (state, action) => {
+    state.orderByName = action.payload;
+    },
     setFilteredPokemonsByType: (state, action) => {
       state.selectedType = action.payload; // Guarda el tipo seleccionado en el estado
       if (action.payload === "all") {
@@ -79,5 +82,6 @@ export const {
   setFilteredPokemons,
   setFilterValue,
   setFilteredPokemonsByType,
+  orderBy
 } = dataSlice.actions;
 export default dataSlice.reducer;
