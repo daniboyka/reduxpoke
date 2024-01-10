@@ -23,7 +23,7 @@ export const PokemonList = ({ pokemons, pokemonsFiltrados }) => {
       pokemon.types.some(p => p.type.name === type)
     );
   }
-
+console.log("FIJARCE EL ORDEN",pokemonsToRender)
   return (
     <div className="PokemonList">
       {pokemonsToRender.length > 0 ? (

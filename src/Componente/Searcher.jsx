@@ -32,18 +32,20 @@ export const Searcher = () => {
 
   return (
     <>
-      <Row>
-      <Col span={3}>
-        <PokemonTypesSelect />
+      <Row justify="space-between">
+        <Col >
+          <PokemonTypesSelect />
         </Col>
-        <Col  span={17}>
-        <Input.Search
-          placeholder="Buscar..."
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+
+        <Col span={10} pull={2}>
+          <Input.Search
+            placeholder="Buscar..."
+            onChange={(e) => handleSearch(e.target.value)}
+          />
         </Col>
-        <Col span={3}>
-        <PokemonSorting />
+
+        <Col >
+          <PokemonSorting />
         </Col>
       </Row>
     </>

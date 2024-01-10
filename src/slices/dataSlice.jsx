@@ -8,7 +8,7 @@ const initialState = {
   PokeType: [],
   selectedType: "all",
   filterValue: "",
-  orderByName: null, // Puede ser "AZ" o "ZA"
+  orderByName: "", // Puede ser "AZ" o "ZA"  
 };
 
 //PROBAR HACER UN UseEffect q dispatch(setFilteredPokemons) cuando los pokemones se seteen en el state pokemon
@@ -38,18 +38,31 @@ export const dataSlice = createSlice({
       if (
         !filterValue ||
         (Array.isArray(filterValue) && filterValue.length === 0)
-      ) {
-        // Si el valor de filtrado no está definido o es un array vacío, mostrar todos los Pokémon si están disponibles
-        state.filteredPokemons = state.pokemons; // Mostrar todos los Pokémon
-      } else {
-        const buscadorDeLetra = filterValue.toLowerCase();
-        state.filteredPokemons = state.pokemons.filter((pokemon) =>
+        ) {
+          // Si el valor de filtrado no está definido o es un array vacío, mostrar todos los Pokémon si están disponibles
+          state.filteredPokemons = state.pokemons; // Mostrar todos los Pokémon
+        } else {
+          const buscadorDeLetra = filterValue.toLowerCase();
+          state.filteredPokemons = state.pokemons.filter((pokemon) =>
           pokemon.name.toLowerCase().includes(buscadorDeLetra)
-        );
+          );
       }
     },
     orderBy: (state, action) => {
-    state.orderByName = action.payload;
+      state.orderByName = action.payload;
+      
+      if (action.payload === "AZ") {
+        state.pokemons = [...state.pokemons].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else if (action.payload === "ZA") {
+        state.pokemons = [...state.pokemons].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+      }
+    
+      // Actualizamos filteredPokemons con la lista ordenada
+      state.filteredPokemons = [...state.pokemons];
     },
     setFilteredPokemonsByType: (state, action) => {
       state.selectedType = action.payload; // Guarda el tipo seleccionado en el estado

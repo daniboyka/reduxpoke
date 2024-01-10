@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { getIn } from "immutable";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { Col, Spin } from "antd";
+import { Col, Row, Spin } from "antd";
 import { Searcher } from "./Componente/Searcher";
 import { PokemonList } from "./Componente/PokemonList";
 // import { getPokemon } from "./api";
@@ -33,9 +33,11 @@ function App() {
           alt="logo"
         />
       </Col>
-      <Col span={16} offset={3}>
+      <Row >
+      <Col span={24}>
         <Searcher />
       </Col>
+      </Row>
       {loading ? (
         <Col offset={12}>
           <Spin spinning size="large" />
