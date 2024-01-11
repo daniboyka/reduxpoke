@@ -1,5 +1,5 @@
 .pokemon-card {
-    /* background: url('./../img/fondos/fondoCard02.jpg') center center/cover no-repeat; */
+    background: url('./../img/fondos/fondoCard02.jpg') center center/cover no-repeat;
     background-color: cadetblue;
     padding: 20px;  /* Ajusta según sea necesario */
     color: white;   /* Ajusta según sea necesario */

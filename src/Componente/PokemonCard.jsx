@@ -21,6 +21,10 @@ export const PokemonCard = ({
     dispatch(setFavorito({ pokemonId: id }))
   }
 
+  
+
+  
+
   return (    
     <Card
       title={name}
@@ -28,7 +32,7 @@ export const PokemonCard = ({
       extra={
         <StarButton isFavorito={favorite} onClick={manejoDeFavoritos} />
       }
-      className="pokemon-card" 
+      className={"pokemon-card"}
     >
       <span>Types:</span>
       <ul>
