@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reduxpoke/static/css/main.bc25bb75.css",
+    "main.js": "/reduxpoke/static/js/main.a1a4dd7d.js",
+    "static/media/fondoCard02.jpg": "/reduxpoke/static/media/fondoCard02.9593caf52259a02bb064.jpg",
+    "static/media/fondo02.jpg": "/reduxpoke/static/media/fondo02.f71ed180aa815ea83e53.jpg",
+    "index.html": "/reduxpoke/index.html",
+    "main.bc25bb75.css.map": "/reduxpoke/static/css/main.bc25bb75.css.map",
+    "main.a1a4dd7d.js.map": "/reduxpoke/static/js/main.a1a4dd7d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc25bb75.css",
+    "static/js/main.a1a4dd7d.js"
+  ]
+}
