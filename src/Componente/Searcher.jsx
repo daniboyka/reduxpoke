@@ -37,7 +37,7 @@ export const Searcher = () => {
           <PokemonTypesSelect />
         </Col>
 
-        <Col span={10} pull={2}>
+        <Col span={10} pull={0}>
           <Input.Search
             placeholder="Buscar..."
             onChange={(e) => handleSearch(e.target.value)}

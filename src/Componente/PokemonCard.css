@@ -1,0 +1,12 @@
+.pokemon-card {
+    /* background: url('./../img/fondos/fondoCard02.jpg') center center/cover no-repeat; */
+    background-color: cadetblue;
+    padding: 20px;  /* Ajusta según sea necesario */
+    color: white;   /* Ajusta según sea necesario */
+    height: 100%;  /* Ajusta la altura según sea necesario */
+    width: 100%;    /* O ajusta el ancho según sea necesario */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+

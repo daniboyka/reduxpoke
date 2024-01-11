@@ -1,32 +1,39 @@
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { orderBy } from "./../slices/dataSlice";
-import { Row } from "antd";
+import { Button, Row,   Typography, Flex  } from "antd";
+const { Title } = Typography;
 
 export const PokemonSorting = () => {
   const dispatch = useDispatch();
   const orderByName= useSelector((state) => state.data.orderByName, shallowEqual);
-  console.log("orderByName<<<<<<<",orderByName)
-
+  
   const handleOrderByName = (order) => {
-    console.log("order<<<<<<<<",order)
-    dispatch(orderBy(order));
+       dispatch(orderBy(order));
   };
 
   return (
-    <div className="sorting-options">
+    <div className="sorting-options" style={{ paddingLeft: '5px', paddingRight: '5px', marginTop: '-0px' }}>
       <Row>
-      <button
+      <Flex gap="small" wrap="wrap">
+      <Title level={4} style={{ paddingLeft: '5px', paddingRight: '5px', marginTop: '-0px' }}>Ordenar por :</Title>
+      <Button
+       style={{ paddingTop: '1px' }}
+      type="primary" shape="round" size={"large"}  
         className={`sorting-button ${orderByName === "AZ" ? "active" : ""}`}
         onClick={() => handleOrderByName("AZ")}
       >
         A-Z
-      </button>
-      <button
+      </Button>
+     
+      <Button
+      style={{ paddingTop: '1px' }}
+        type="primary" shape="round" size={"large"}  
         className={`sorting-button ${orderByName === "ZA" ? "active" : ""}`}
         onClick={() => handleOrderByName("ZA")}
       >
         Z-A
-      </button>
+      </Button>
+      </Flex>
       </Row>
     </div>
   );

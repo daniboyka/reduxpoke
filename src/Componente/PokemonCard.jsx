@@ -2,6 +2,7 @@ import { Card } from "antd";
 import { StarButton } from "./StarButton/index";
 import { useDispatch } from "react-redux";
 import { setFavorito } from "../slices/dataSlice";
+import "./PokemonCard.css"
 const { Meta } = Card;
 
 export const PokemonCard = ({
@@ -27,6 +28,7 @@ export const PokemonCard = ({
       extra={
         <StarButton isFavorito={favorite} onClick={manejoDeFavoritos} />
       }
+      className="pokemon-card" 
     >
       <span>Types:</span>
       <ul>
